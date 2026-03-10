@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field, field_validator
-from typing import Optional, List
+from typing import Optional, List, ClassVar
 import re
 
 # Задание 1.4 - Модель User
@@ -22,8 +22,9 @@ class FeedbackValidated(BaseModel):
     name: str = Field(..., min_length=2, max_length=50, description="Имя от 2 до 50 символов")
     message: str = Field(..., min_length=10, max_length=500, description="Сообщение от 10 до 500 символов")
     
-    # Список недопустимых слов
-    forbidden_words = ["кринг", "рофл", "вайб"]
+    # ✅ ИСПРАВЛЕНИЕ: Добавлена аннотация ClassVar
+    # Это говорит Pydantic, что это классовая переменная, а не поле модели
+    forbidden_words: ClassVar[list[str]] = ["кринг", "рофл", "вайб"]
     
     @field_validator('message')
     def check_forbidden_words(cls, v):

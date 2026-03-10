@@ -5,3 +5,8 @@
 1. Установите зависимости:
 ```bash
 pip install -r requirements.txt
+```
+2. Дописываем /docs к хосту и будет открыт swager
+```bash
+http://127.0.0.1:8000/docs
+```
